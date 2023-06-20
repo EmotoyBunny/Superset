@@ -1,12 +1,16 @@
-import React, {useRef} from 'react';
+import React, {useState} from 'react';
 import {embedDashboard} from "@superset-ui/embedded-sdk"
 import {useEffect} from "react"
 import "./App.css"
 import config from "config";
 import {MainMenu} from "./components/MainMenu"
-import {List} from '@mui/material';
+import {List, ListItem, ListItemText, ListItemIcon} from '@mui/material';
+import FlagIcon from '@mui/icons-material/Flag';
+import PersonIcon from '@mui/icons-material/Person';
 
 function App() {
+    const [id, setId] = useState("b3ff142c-67a8-4318-82c1-4a6ae769f565");
+
     const fetchAccessToken = async () => {
         let access_token = "";
         try {
@@ -72,27 +76,26 @@ function App() {
         }
     }
 
-    const id = "b3ff142c-67a8-4318-82c1-4a6ae769f565";
     useEffect(() => {
-        const embed = async () => {
-            await embedDashboard({
-                id: id,
-                supersetDomain: "http://superset.kopr:8088",
-                mountPoint: document.getElementById("dashboard"),
-                fetchGuestToken: () => fetchGuestToken(),
-                dashboardUiConfig: {
-                    hideTitle: true,
-                    hideChartControls: true,
-                    hideTab: true,
-                },
-            })
-        }
         if (document.getElementById("dashboard")) {
             embed().then((res) => {
             });
         }
-
     }, [])
+
+    const embed = async () => {
+        await embedDashboard({
+            id: id,
+            supersetDomain: "http://superset.kopr:8088",
+            mountPoint: document.getElementById("dashboard"),
+            fetchGuestToken: () => fetchGuestToken(),
+            dashboardUiConfig: {
+                hideTitle: true,
+                hideChartControls: true,
+                hideTab: true,
+            },
+        })
+    }
 
     return (
         <div className="App">
@@ -101,13 +104,43 @@ function App() {
                     Menu: (props) => {
                         return (
                             <List>
+                                <ListItem
+                                    key='1'
+                                    button
+                                    onClick={() => {
+                                        setId("b3ff142c-67a8-4318-82c1-4a6ae769f565");
+                                        embed().then((res) => {
+                                        });
+                                    }}
+                                >
+                                    <ListItemIcon>
+                                        <FlagIcon
+                                            color="primary"/>
+                                    </ListItemIcon>
+                                    <ListItemText primary='Id №1'/>
+                                </ListItem>
+                                <ListItem
+                                    key='2'
+                                    button
+                                    onClick={() => {
+                                        setId("b3ff142c-67a8-4318-82c1-4a6ae769f565");
+                                        embed().then((res) => {
+                                        });
+                                    }}
+                                >
+                                    <ListItemIcon>
+                                        <PersonIcon
+                                            color="primary"/>
+                                    </ListItemIcon>
+                                    <ListItemText primary='Id №2'/>
+                                </ListItem>
                             </List>
                         );
                     },
                 }}
             />
             <div style={{paddingTop: "50px"}}>
-                <div id="dashboard" ></div>
+                <div id="dashboard"></div>
             </div>
         </div>
     )
