@@ -2,7 +2,14 @@
   "name": "test-map",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
+  "scripts": {
+    "build": "webpack --mode production --env prod",
+    "start": "webpack serve --mode development --hot --env goal=dev",
+    "buildDev": "webpack --mode production --env goal=dev",
+    "start_local": "webpack serve --mode development --hot --env goal=local"
+  },
+  "dependencies": {},
+  "devDependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@ionic/react": "^6.5.4",
@@ -15,7 +22,6 @@
     "@mui/styles": "^5.8.4",
     "@mui/system": "^5.8.4",
     "@mui/utils": "^5.8.4",
-    "@react-leaflet/core": "^2.0.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -26,13 +32,15 @@
     "react-router-dom": "^5.1.0",
     "react-scripts": "5.0.1",
     "@superset-ui/embedded-sdk": "^0.1.0-alpha.9",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "web-vitals": "^2.1.4",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^5.3.2",
+    "path": "^0.12.7",
+    "style-loader": "^1.1.3",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.0.0",
+    "clean-webpack-plugin": "^3.0.0"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +48,7 @@
       "react-app/jest"
     ]
   },
+  "proxy": "http://superset.kopr:8088/api/",
   "browserslist": {
     "production": [
       ">0.2%",

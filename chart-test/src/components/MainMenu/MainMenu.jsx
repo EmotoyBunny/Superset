@@ -27,12 +27,12 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         justifyContent: "flex-end",
         backgroundColor: "#000",
-        height: "64px !important",
-        minHeight: "64px !important",
+        height: "40px !important",
+        minHeight: "40px !important",
     },
     appToolbar: {
-        height: 64,
-        minHeight: 64,
+        height: 40,
+        minHeight: 40,
         color: "#fff",
         backgroundColor: "#000",
     },
@@ -114,14 +114,13 @@ export const MainMenu = (props) => {
     }
 
 
-
     return (
         <div>
             <CssBaseline/>
             <AppBar
                 position="fixed" open={open}
             >
-                <Toolbar className={classes.appToolbar} style={{backgroundColor: "#000"}}>
+                <Toolbar className={classes.appToolbar} style={{backgroundColor: "#000", minHeight: "40px"}}>
                     <div>
                         <IconButton
                             aria-label="open drawer"
@@ -129,7 +128,7 @@ export const MainMenu = (props) => {
                             edge="start"
                             sx={{
                                 ...(open && {display: 'none'}),
-                                color:"#fff"
+                                color: "#fff"
                             }}
                             tooltip="Раскрыть меню"
                         >
@@ -148,9 +147,6 @@ export const MainMenu = (props) => {
                         }}
                     >
                     </Typography>
-                    {props.components && props.components.ToolbarButtons && (
-                        <props.components.ToolbarButtons/>
-                    )}
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -160,12 +156,12 @@ export const MainMenu = (props) => {
                 <div className={classes.toolbar}>
                     <IconButton onClick={handleDrawerClose} tooltip="Скрыть меню">
                         {theme.direction === "rtl" ? (
-                            <ChevronRightIcon   sx={{
-                                color:"#fff"
+                            <ChevronRightIcon sx={{
+                                color: "#fff"
                             }}/>
                         ) : (
-                            <ChevronLeftIcon   sx={{
-                                color:"#fff"
+                            <ChevronLeftIcon sx={{
+                                color: "#fff"
                             }}/>
                         )}
                     </IconButton>

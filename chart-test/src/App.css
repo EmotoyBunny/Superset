@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+
+div#dashboard iframe  {
+  border: 0;
+  width: 90%;
+  height: 900px;
+}
+
